@@ -8,13 +8,19 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
+      background: linear-gradient(to bottom, #f6f8fb 0%, #f6f8fb 100%);
       font-family: 'Inter', sans-serif;
-      background-color: #f9f9f9;
       color: #1a1a1a;
       padding: 2rem;
       line-height: 1.6;
+      min-height: 100vh;
     }
     header {
+      background: linear-gradient(135deg, #e6ecf3 0%, #f5f8fc 100%);
+      background-color: #eef2f7;
+      border-radius: 12px;
+      padding: 2rem 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
       text-align: center;
       margin-bottom: 3rem;
     }
@@ -47,20 +53,23 @@
       border-bottom: 2px solid #ddd;
       padding-bottom: 0.5rem;
     }
-    .project {
+    details {
       background: #fff;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
     }
-    .project h3 {
+    summary {
       font-size: 1.3rem;
-      margin-bottom: 0.5rem;
+      font-weight: 600;
       color: #222;
+      outline: none;
     }
     .project p {
       color: #444;
+      margin-top: 1rem;
     }
     .contact {
       text-align: center;
@@ -76,56 +85,138 @@
     .contact a:hover {
       text-decoration: underline;
     }
-  </style>
+  details[open] summary ~ p {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+details {
+  transition: background-color 0.3s ease;
+}
+
+details[open] {
+  background-color: #f0f4ff;
+}
+
+details[open] summary ~ p {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+details {
+  transition: background-color 0.3s ease;
+  background-color: #fdfefe;
+  border: 1px solid #e0e6ed;
+}
+
+summary {
+  position: relative;
+  list-style: none;
+}
+
+summary::after {
+  content: '▶';
+  position: absolute;
+  right: 0;
+  transition: transform 0.3s ease;
+  color: #888;
+}
+
+details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+body {
+  background-color: #f6f8fb;
+  color: #2a2a2a;
+}
+
+.project p {
+  color: #444;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.details[open] summary ~ p {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.headline-message {
+  font-size: 1.1rem;
+  color: #4d5966;
+  margin-top: 0.75rem;
+  font-weight: 500;
+  font-style: italic;
+}
+.headline-intro {
+  font-size: 1.4rem;
+  color: #2a2a2a;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+</style>
 </head>
 <body>
   <header>
+    <p class="headline-intro">Delivering clarity through complexity – On time. On scope. On budget.</p>
     <img src="profile.jpg" alt="Nir Erez" class="profile-pic">
     <h1>Nir Erez</h1>
+    
     <p class="subtitle">Technical Platform Owner | Tech Strategy | Project Manager</p>
   </header>
 
   <section class="projects">
     <h2>Areas of Expertise</h2>
 
-     <div class="project">
-      <h3>Agile Product Delivery</h3>
+    <details class="project">
+      <summary>Agile Product Delivery</summary>
       <p>Led product development cycles using Agile methodologies, with a strong emphasis on MVP definition, iterative delivery, and KPI-driven execution. Promoted a culture of continuous improvement and close collaboration across internal stakeholders.</p>
-     </div>
-    
-    <div class="project">
-      <h3>Architecture & Thought Leadership</h3>
+    </details>
+
+    <details class="project">
+      <summary>Architecture & Thought Leadership</summary>
       <p>Led strategic architecture planning initiatives and cross-functional thinking groups. Designed hybrid infrastructures that seamlessly integrated cloud-native AWS services with on-premise systems, enabling scalability, security, and cost-efficiency for enterprise-grade platforms.</p>
-    </div>
-   
-    <div class="project">
-      <h3>External Vendor Management</h3>
+    </details>
+
+    <details class="project">
+      <summary>External Vendor Management</summary>
       <p>Collaborated with external vendors operating under fixed-scope models by providing structured and fully defined business specifications. Ensured integration success by aligning deliverables with internal development pipelines and business goals.</p>
-    </div>
+    </details>
 
-    <div class="project">
-      <h3>Maintenance vs. Delivery Balance</h3>
+    <details class="project">
+      <summary>Maintenance vs. Delivery Balance</summary>
       <p>Implemented strategies to balance ongoing system maintenance with new feature delivery. Championed proactive planning and resource allocation that minimized technical debt while ensuring continuous progress on product goals. Fostered a culture that values both system reliability and innovation through effective prioritization frameworks and clear stakeholder communication.</p>
-    </div>
-   
-    <div class="project">
-      <h3>AI-Based Platform</h3>
+    </details>
+
+    <details class="project">
+      <summary>AI-Based Platform</summary>
       <p>Led the design and implementation of an AI-based internal platform that automated repetitive tasks and resulted in a 5% workforce efficiency improvement within the first year. The solution leveraged scalable microservices and integrated seamlessly into legacy systems.</p>
-    </div>
-    
-    <div class="project">
-      <h3>End-to-End Client-Server Platform</h3>
+    </details>
+
+    <details class="project">
+      <summary>End-to-End Client-Server Platform</summary>
       <p>Directed the development and delivery of a mission-critical client-server platform, built to support scalable operations and complex business workflows. Oversaw system design, interface architecture, and API orchestration while leading a cross-functional team of engineers, analysts, and QA. Delivered a robust and high-performance solution aligned with both business and technical KPIs.</p>
-    </div>
-    
-    <div class="project">
-      <h3>Legacy System Decommissioning & Reuse Strategy</h3>
+    </details>
+
+    <details class="project">
+      <summary>Legacy System Decommissioning & Reuse Strategy</summary>
       <p>Orchestrated a complete sunsetting process of outdated systems by introducing a service reuse model. Reduced operational complexity and improved maintainability while ensuring business continuity during transition phases.</p>
-    </div>
+    </details>
+  </section>
 
-    
-
-</section>
   <section class="contact">
     <p>📞 +972 54 8033190</p>
     <p>📧 <a href="mailto:Erez10Nir@gmail.com">Erez10Nir@gmail.com</a></p>
